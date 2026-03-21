@@ -53,7 +53,7 @@ export default {
       // Send email using Cloudflare Email Worker binding
       await env.SEND_EMAIL.send({
         to: "info@stephenbaylissastrology.com.au",
-        from: "webform@sb-astrology.pages.dev", // Replace with a valid address on your routed domain
+        from: "narkanie00@gmail.com", // Replace with a valid address on your routed domain
         subject: subject,
         text: emailBody,
       });

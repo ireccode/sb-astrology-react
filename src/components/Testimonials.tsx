@@ -43,12 +43,12 @@ const Testimonials = () => {
       
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center space-y-4 mb-16">
-          <h2 className="text-4xl lg:text-5xl font-bold text-orange-400">HEAR FROM OUR CLIENTS</h2>
+          <h2 className="text-4xl lg:text-5xl font-bold text-cyan-400">HEAR FROM OUR CLIENTS</h2>
         </div>
 
         <div className="grid md:grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
           {testimonials.map((testimonial, index) => (
-            <Card key={index} className="bg-orange-600/90 border-0 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
+            <Card key={index} className="bg-[#1866a2]/90 border-0 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
               <CardContent className="p-8">
                 <div className="space-y-6">
                   <div className="flex justify-center">

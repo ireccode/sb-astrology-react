@@ -1,0 +1,9 @@
+name = "sb-astrology-react"
+main = "worker.js"
+compatibility_date = "2024-01-01"
+account_id = "9b3f64db6cb1d118401f35a81c4bfc09"
+workers_dev = true
+
+[[send_email]]
+name = "SEND_EMAIL"
+destination_address = "info@stephenbaylissastrology.com.au"
