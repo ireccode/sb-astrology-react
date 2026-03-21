@@ -1,5 +1,6 @@
 import { Card, CardContent } from "@/components/ui/card";
-import { Star, Quote } from "lucide-react";
+import { Star } from "lucide-react";
+import zodiacBg from "@/assets/sb-astrology-bg-zodiak.webp";
 
 const Testimonials = () => {
   const testimonials = [
@@ -20,25 +21,34 @@ const Testimonials = () => {
       <Star
         key={i}
         className={`w-5 h-5 ${
-          i < rating ? "fill-accent text-accent" : "text-muted-foreground"
+          i < rating ? "fill-yellow-400 text-yellow-400" : "text-gray-400"
         }`}
       />
     ));
   };
 
   return (
-    <section id="testimonials" className="py-20 starfield-bg relative">
-      {/* Cosmic decorative elements */}
-      <div className="absolute inset-0 cosmic-pattern opacity-20"></div>
+    <section 
+      id="testimonials" 
+      className="py-20 relative"
+      style={{
+        backgroundImage: `url(${zodiacBg})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundAttachment: 'fixed'
+      }}
+    >
+      {/* Dark overlay for text readability */}
+      <div className="absolute inset-0 bg-black/50"></div>
       
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center space-y-4 mb-16">
-          <h2 className="text-4xl lg:text-5xl font-bold text-secondary">HEAR FROM OUR CLIENTS</h2>
+          <h2 className="text-4xl lg:text-5xl font-bold text-orange-400">HEAR FROM OUR CLIENTS</h2>
         </div>
 
         <div className="grid md:grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
           {testimonials.map((testimonial, index) => (
-            <Card key={index} className="bg-secondary/90 border-secondary starry-shadow hover:shadow-lg transition-shadow">
+            <Card key={index} className="bg-orange-600/90 border-0 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
               <CardContent className="p-8">
                 <div className="space-y-6">
                   <div className="flex justify-center">

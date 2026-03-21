@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Star, Sparkles } from "lucide-react";
 import { useState } from "react";
 import ContactModal from "./ContactModal";
+import heroBg from "@/assets/sb-astrology-bg-hero.webp";
 
 const Hero = () => {
   const [showContact, setShowContact] = useState(false);
@@ -14,26 +15,32 @@ const Hero = () => {
     <>
       <section 
         id="hero"
-        className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden starfield-bg"
+        className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden"
+        style={{
+          backgroundImage: `url(${heroBg})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundAttachment: 'fixed'
+        }}
       >
-        {/* Cosmic overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/20 to-background/60"></div>
+        {/* Dark overlay for text readability */}
+        <div className="absolute inset-0 bg-black/40"></div>
         
         {/* Header with logo and book button */}
         <div className="absolute top-8 left-0 right-0 z-20">
           <div className="container mx-auto px-4 flex justify-between items-center">
             <div className="flex items-center gap-4">
-              <div className="w-16 h-16 bg-gradient-to-br from-secondary to-primary rounded-full flex items-center justify-center">
+              <div className="w-16 h-16 bg-gradient-to-br from-cyan-400 to-cyan-600 rounded-full flex items-center justify-center">
                 <Star className="w-8 h-8 text-white" />
               </div>
               <div>
-                <h1 className="text-2xl font-bold text-secondary">Stephen Bayliss</h1>
-                <p className="text-lg text-secondary/80">Astrology</p>
+                <h1 className="text-2xl font-bold text-cyan-300">Stephen Bayliss</h1>
+                <p className="text-lg text-cyan-300/80">Astrology</p>
               </div>
             </div>
             <Button
               onClick={() => setShowContact(true)}
-              className="bg-secondary hover:bg-secondary/90 text-white px-6 py-2"
+              className="bg-cyan-600 hover:bg-cyan-700 text-white px-6 py-2 font-semibold"
             >
               Book Your Reading
             </Button>
@@ -44,13 +51,13 @@ const Hero = () => {
           <div className="max-w-4xl mx-auto space-y-12">
             {/* Main heading */}
             <div className="space-y-6">
-              <h2 className="text-4xl lg:text-6xl font-bold text-secondary leading-tight">
+              <h2 className="text-4xl lg:text-6xl font-bold text-cyan-300 leading-tight">
                 Who We Are
               </h2>
             </div>
 
             {/* Main content paragraphs */}
-            <div className="space-y-8 text-lg lg:text-xl text-foreground/90 max-w-5xl mx-auto">
+            <div className="space-y-8 text-lg lg:text-xl text-white/90 max-w-5xl mx-auto">
               <p className="italic leading-relaxed">
                 As we move into the Aquarian age, with all of the rapid changes in the world, it is becoming increasingly difficult to navigate through all of the information that exists out there.
               </p>
@@ -69,7 +76,7 @@ const Hero = () => {
               <Button
                 onClick={() => setShowContact(true)}
                 size="lg"
-                className="cosmic-purple-gradient text-white px-8 py-3 text-lg"
+                className="bg-cyan-600 hover:bg-cyan-700 text-white px-8 py-3 text-lg font-semibold"
               >
                 <Sparkles className="w-5 h-5 mr-2" />
                 Explore Your Destiny
@@ -77,7 +84,7 @@ const Hero = () => {
               <Button
                 variant="outline"
                 size="lg"
-                className="border-accent text-accent hover:bg-accent hover:text-accent-foreground px-8 py-3 text-lg"
+                className="border-yellow-400 text-yellow-400 hover:bg-yellow-400 hover:text-gray-900 px-8 py-3 text-lg font-semibold"
                 onClick={() => scrollToSection('testimonials')}
               >
                 TESTIMONIALS
@@ -88,8 +95,8 @@ const Hero = () => {
             <div className="pt-16">
               <div className="flex justify-center">
                 <div className="animate-bounce">
-                  <div className="w-6 h-10 border-2 border-secondary/50 rounded-full flex justify-center">
-                    <div className="w-1 h-3 bg-secondary rounded-full mt-2 animate-pulse"></div>
+                  <div className="w-6 h-10 border-2 border-cyan-400/50 rounded-full flex justify-center">
+                    <div className="w-1 h-3 bg-cyan-400 rounded-full mt-2 animate-pulse"></div>
                   </div>
                 </div>
               </div>

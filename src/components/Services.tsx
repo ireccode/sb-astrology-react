@@ -60,7 +60,7 @@ const Services = () => {
             {services.map((service) => (
               <Card key={service.id} className="bg-white border-0 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
                 {/* Service Image */}
-                <div className="w-full h-48 overflow-hidden bg-gray-200">
+                <div className="w-full h-[336px] overflow-hidden bg-gray-200">
                   <img
                     src={service.image}
                     alt={service.title}
