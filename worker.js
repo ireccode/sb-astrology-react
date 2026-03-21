@@ -1,3 +1,5 @@
+import { EmailMessage } from "cloudflare:email";
+
 export default {
   async fetch(request, env, ctx) {
     // Handle CORS preflight requests
@@ -51,12 +53,12 @@ export default {
     `;
 
     try {
-      // Send email using Cloudflare Email Worker binding
-      await env.send_email.transport.send({
-        to: env.send_email.destination_address,
-        subject: subject,
-        text: emailBody,
-      });
+      const sender = "noreply@stephenbaylissastrology.com.au";
+      const recipient = "narkanie00@gmail.com";
+      const rawEmail = `From: ${sender}\r\nTo: ${recipient}\r\nSubject: ${subject}\r\nContent-Type: text/plain; charset="utf-8"\r\n\r\n${emailBody}`;
+      
+      const message = new EmailMessage(sender, recipient, rawEmail);
+      await env.send_email.send(message);
 
       const requestOrigin = request.headers.get("Origin");
       const allowedOrigins = ["https://stephenbaylissastrology.com.au", "https://www.stephenbaylissastrology.com.au"];
