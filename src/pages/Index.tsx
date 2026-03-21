@@ -1,23 +1,20 @@
 import Navigation from "@/components/Navigation";
 import Hero from "@/components/Hero";
 import Services from "@/components/Services";
-import Booking from "@/components/Booking";
 import Testimonials from "@/components/Testimonials";
-import Location from "@/components/Location";
+import FAQ from "@/components/FAQ";
 import Footer from "@/components/Footer";
 
-import React, { useState } from "react";
+import React from "react";
 
 const Index = () => {
-  const [calLink, setCalLink] = useState("smartechall");
   return (
     <div className="min-h-screen">
-      <Navigation setCalLink={setCalLink} />
+      <Navigation />
       <Hero />
       <Services />
-      <Booking calLink={calLink} />
       <Testimonials />
-      <Location />
+      <FAQ />
       <Footer />
     </div>
   );

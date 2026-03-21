@@ -1,5 +1,4 @@
-import { Separator } from "@/components/ui/separator";
-import { Star, Mail } from "lucide-react";
+import { Star, Mail, Instagram } from "lucide-react";
 
 const Footer = () => {
   return (
@@ -19,18 +18,31 @@ const Footer = () => {
 
           {/* Copyright */}
           <div className="text-center">
-            <p className="text-foreground/80">© 2022 StephenBaylissAstrology - All Rights Reserved</p>
+            <p className="text-foreground/80">© 2025 StephenBaylissAstrology - All Rights Reserved</p>
           </div>
 
           {/* Contact */}
-          <div className="flex items-center gap-2">
-            <Mail className="w-5 h-5 text-secondary" />
-            <a 
-              href="mailto:astrologyofthetimes@gmail.com" 
-              className="text-foreground/80 hover:text-secondary transition-colors italic"
-            >
-              astrologyofthetimes@gmail.com
-            </a>
+          <div className="flex flex-col items-center gap-3">
+            <div className="flex items-center gap-2">
+              <Mail className="w-5 h-5 text-secondary" />
+              <a 
+                href="mailto:info@stephenbaylissastrology.com.au" 
+                className="text-foreground/80 hover:text-secondary transition-colors"
+              >
+                info@stephenbaylissastrology.com.au
+              </a>
+            </div>
+            <div className="flex items-center gap-3">
+              <a 
+                href="https://instagram.com" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-foreground/80 hover:text-secondary transition-colors"
+                aria-label="Instagram"
+              >
+                <Instagram className="w-5 h-5" />
+              </a>
+            </div>
           </div>
         </div>
       </div>
