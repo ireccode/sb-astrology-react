@@ -17,9 +17,10 @@ import { Loader2 } from "lucide-react";
 interface ContactModalProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
+  selectedService?: string | null;
 }
 
-const ContactModal = ({ open, onOpenChange }: ContactModalProps) => {
+const ContactModal = ({ open, onOpenChange, selectedService }: ContactModalProps) => {
   const { toast } = useToast();
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
@@ -27,13 +28,13 @@ const ContactModal = ({ open, onOpenChange }: ContactModalProps) => {
     email: "",
     phone: "",
     countryOfBirth: "",
-    service: "",
+    service: selectedService || "",
     preferredDateTime: "",
     message: ""
   });
 
   const services = [
-    { id: "natal", label: "Natal Chart Astrology Readings", price: "AU$180" },
+    { id: "natal-chart", label: "Natal Chart Astrology Readings", price: "AU$180" },
     { id: "transits", label: "Transits & Progressions Readings", price: "AU$150" },
     { id: "couples", label: "Couples Reading", price: "AU$250" }
   ];
@@ -64,8 +65,8 @@ const ContactModal = ({ open, onOpenChange }: ContactModalProps) => {
 
     try {
       // Format service name
-      const selectedService = services.find(s => s.id === formData.service);
-      const serviceName = selectedService ? `${selectedService.label} (${selectedService.price})` : formData.service;
+      const currentService = services.find(s => s.id === formData.service);
+      const serviceName = currentService ? `${currentService.label} (${currentService.price})` : formData.service;
 
       // Create email body
       const emailBody = `
@@ -123,7 +124,7 @@ This enquiry was submitted via the contact form at sb-astrology.pages.dev
         email: "",
         phone: "",
         countryOfBirth: "",
-        service: "",
+        service: selectedService || "",
         preferredDateTime: "",
         message: ""
       });
@@ -143,7 +144,7 @@ This enquiry was submitted via the contact form at sb-astrology.pages.dev
         email: "",
         phone: "",
         countryOfBirth: "",
-        service: "",
+        service: selectedService || "",
         preferredDateTime: "",
         message: ""
       });
@@ -154,14 +155,14 @@ This enquiry was submitted via the contact form at sb-astrology.pages.dev
     }
   };
 
-  const selectedService = services.find(s => s.id === formData.service);
+  const currentService = services.find(s => s.id === formData.service);
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
         <DialogHeader>
-          <DialogTitle className="text-2xl font-bold text-secondary">Book Your Reading</DialogTitle>
-          <DialogDescription className="text-base text-foreground/80 mt-2">
+          <DialogTitle className="text-2xl font-bold text-cyan-600">Book Your Reading</DialogTitle>
+          <DialogDescription className="text-base text-gray-700 mt-2">
             Fill out the form below to connect with us. Select the astrology service you're interested in, provide your details and your country of birth.
           </DialogDescription>
         </DialogHeader>
@@ -252,10 +253,10 @@ This enquiry was submitted via the contact form at sb-astrology.pages.dev
           </div>
 
           {/* Service Description */}
-          {selectedService && (
+          {currentService && (
             <div className="p-4 bg-secondary/10 rounded-lg border border-secondary/20">
               <p className="text-sm text-foreground/80">
-                <strong>{selectedService.label}</strong> — {selectedService.price}
+                <strong>{currentService.label}</strong> — {currentService.price}
               </p>
             </div>
           )}
