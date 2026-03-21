@@ -56,9 +56,9 @@ export default {
       const sender = "noreply@stephenbaylissastrology.com.au";
       const recipient = "narkanie00@gmail.com";
       const rawEmail = `From: ${sender}\r\nTo: ${recipient}\r\nSubject: ${subject}\r\nContent-Type: text/plain; charset="utf-8"\r\n\r\n${emailBody}`;
-      
+
       const message = new EmailMessage(sender, recipient, rawEmail);
-      await env.send_email.send(message);
+      await env.EMAIL_SERVICE.send(message);
 
       const requestOrigin = request.headers.get("Origin");
       const allowedOrigins = ["https://stephenbaylissastrology.com.au", "https://www.stephenbaylissastrology.com.au"];
