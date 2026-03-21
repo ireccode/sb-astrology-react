@@ -52,9 +52,8 @@ export default {
 
     try {
       // Send email using Cloudflare Email Worker binding
-      await env.SEND_EMAIL.send({
-        to: "info@stephenbaylissastrology.com.au",
-        from: "contact@stephenbaylissastrology.com.au", // Use a verified domain address
+      await env.SEND_EMAIL.transport.send({
+        to: env.SEND_EMAIL.destination_address,
         subject: subject,
         text: emailBody,
       });

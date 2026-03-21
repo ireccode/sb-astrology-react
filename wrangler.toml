@@ -11,4 +11,4 @@ invocation_logs = true
 
 [[send_email]]
 name = "SEND_EMAIL"
-destination_address = "info@stephenbaylissastrology.com.au"
+destination_address = "narkanie00@gmail.com"
