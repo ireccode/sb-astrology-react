@@ -52,10 +52,21 @@ const ContactModal = ({ open, onOpenChange, selectedService }: ContactModalProps
     e.preventDefault();
 
     // Validation
-    if (!formData.fullName || !formData.email || !formData.countryOfBirth || !formData.service) {
+    if (!formData.fullName || !formData.email || !formData.service) {
       toast({
         title: "Missing Information",
-        description: "Please fill in all required fields.",
+        description: "Please fill in all required fields (Name, Email, and Service).",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    // Email format validation
+    const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+    if (!emailRegex.test(formData.email)) {
+      toast({
+        title: "Invalid Email",
+        description: "Please enter a valid email address.",
         variant: "destructive"
       });
       return;
@@ -64,92 +75,67 @@ const ContactModal = ({ open, onOpenChange, selectedService }: ContactModalProps
     setLoading(true);
 
     try {
-      // Format service name
+      // Get the service details
       const currentService = services.find(s => s.id === formData.service);
-      const serviceName = currentService ? `${currentService.label} (${currentService.price})` : formData.service;
+      const serviceLabel = currentService ? currentService.label : formData.service;
+      const servicePrice = currentService ? currentService.price : "Price not specified";
 
-      // Create email body
-      const emailBody = `
-New Astrology Reading Enquiry
+      // Prepare the payload for the Worker
+      const payload = {
+        fullName: formData.fullName,
+        email: formData.email,
+        phone: formData.phone,
+        countryOfBirth: formData.countryOfBirth,
+        service: serviceLabel,
+        price: servicePrice,
+        preferredTime: formData.preferredDateTime,
+        message: formData.message
+      };
 
-Full Name: ${formData.fullName}
-Email: ${formData.email}
-Phone: ${formData.phone || "Not provided"}
-Country of Birth: ${formData.countryOfBirth}
-Service: ${serviceName}
-Preferred Date/Time: ${formData.preferredDateTime || "Not specified"}
-
-Additional Details:
-${formData.message || "No additional message"}
-
----
-This enquiry was submitted via the contact form at sb-astrology.pages.dev
-      `.trim();
-
-      // Send email via API endpoint
-      const response = await fetch("/api/send-email", {
+      // Send to Cloudflare Worker
+      const response = await fetch("https://shy-scene-c769.ireknie00.workers.dev/contact", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
         },
-        body: JSON.stringify({
-          to: "info@stephenbaylissastrology.com.au",
-          subject: `New Astrology Reading Enquiry from ${formData.fullName}`,
-          formData: {
-            fullName: formData.fullName,
-            email: formData.email,
-            phone: formData.phone || "Not provided",
-            countryOfBirth: formData.countryOfBirth,
-            service: serviceName,
-            preferredDateTime: formData.preferredDateTime || "Not specified",
-            message: formData.message || "No additional message"
-          }
-        })
+        body: JSON.stringify(payload)
       });
 
       if (!response.ok) {
-        // Even if API fails, show success message since form was submitted
-        // In production, you'd want better error handling
-        console.error("API response not ok:", response.status);
+        const errorData = await response.json().catch(() => ({ error: "Unknown error" }));
+        throw new Error(errorData.error || `HTTP error! status: ${response.status}`);
       }
 
-      toast({
-        title: "Success!",
-        description: "Your enquiry has been sent. We'll be in touch soon.",
-      });
+      const result = await response.json();
 
-      // Reset form
-      setFormData({
-        fullName: "",
-        email: "",
-        phone: "",
-        countryOfBirth: "",
-        service: selectedService || "",
-        preferredDateTime: "",
-        message: ""
-      });
+      if (result.success) {
+        toast({
+          title: "Success!",
+          description: "Your enquiry has been sent. We'll be in touch soon.",
+        });
 
-      onOpenChange(false);
+        // Reset form
+        setFormData({
+          fullName: "",
+          email: "",
+          phone: "",
+          countryOfBirth: "",
+          service: selectedService || "",
+          preferredDateTime: "",
+          message: ""
+        });
+
+        onOpenChange(false);
+      } else {
+        throw new Error(result.error || "Failed to send enquiry");
+      }
     } catch (error) {
-      console.error("Error sending email:", error);
-      // Still show success to user since form was submitted
+      console.error("Error sending enquiry:", error);
       toast({
-        title: "Success!",
-        description: "Your enquiry has been sent. We'll be in touch soon.",
+        title: "Error",
+        description: error instanceof Error ? error.message : "Failed to send your enquiry. Please try again.",
+        variant: "destructive"
       });
-      
-      // Reset form anyway
-      setFormData({
-        fullName: "",
-        email: "",
-        phone: "",
-        countryOfBirth: "",
-        service: selectedService || "",
-        preferredDateTime: "",
-        message: ""
-      });
-
-      onOpenChange(false);
     } finally {
       setLoading(false);
     }
@@ -220,7 +206,7 @@ This enquiry was submitted via the contact form at sb-astrology.pages.dev
           {/* Country of Birth */}
           <div className="space-y-2">
             <Label htmlFor="countryOfBirth" className="text-foreground font-semibold">
-              Country of Birth <span className="text-destructive">*</span>
+              Country of Birth <span className="text-muted-foreground text-sm">(Optional)</span>
             </Label>
             <Input
               id="countryOfBirth"
@@ -228,7 +214,6 @@ This enquiry was submitted via the contact form at sb-astrology.pages.dev
               placeholder="Enter your country of birth"
               value={formData.countryOfBirth}
               onChange={handleInputChange}
-              required
               disabled={loading}
             />
           </div>
