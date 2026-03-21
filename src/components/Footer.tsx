@@ -1,4 +1,5 @@
 import { Star, Mail, Instagram } from "lucide-react";
+import logo from "@/assets/stephenbayliss-astrology-logo1.webp";
 
 const Footer = () => {
   return (
@@ -6,14 +7,12 @@ const Footer = () => {
       <div className="container mx-auto px-4 py-12">
         <div className="flex flex-col md:flex-row justify-between items-center gap-8">
           {/* Brand Section */}
-          <div className="flex items-center gap-4">
-            <div className="w-16 h-16 bg-gradient-to-br from-cyan-400 to-cyan-600 rounded-full flex items-center justify-center">
-              <Star className="w-8 h-8 text-white" />
-            </div>
-            <div>
-              <h3 className="text-2xl font-bold text-cyan-300">Stephen Bayliss</h3>
-              <p className="text-cyan-300/80">Astrology</p>
-            </div>
+          <div className="flex items-center">
+            <img 
+              src={logo} 
+              alt="Stephen Bayliss Astrology" 
+              className="h-16 w-auto"
+            />
           </div>
 
           {/* Copyright */}

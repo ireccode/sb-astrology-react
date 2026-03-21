@@ -11,10 +11,10 @@ export default {
     }
 
     // Ensure the request is from the allowed origin
-    const origin = request.headers.get("Origin");
-    if (origin !== "https://sb-astrology.pages.dev") {
-      return new Response("Forbidden", { status: 403 });
-    }
+    // const origin = request.headers.get("Origin");
+    // if (origin !== "https://sb-astrology.pages.dev") {
+    //   return new Response("Forbidden", { status: 403 });
+    // }
 
     let formData;
     try {

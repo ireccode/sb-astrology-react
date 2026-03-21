@@ -3,6 +3,7 @@ import { Star, Sparkles } from "lucide-react";
 import { useState } from "react";
 import ContactModal from "./ContactModal";
 import heroBg from "@/assets/sb-astrology-bg-hero.webp";
+import logo from "@/assets/stephenbayliss-astrology-logo1.webp";
 
 const Hero = () => {
   const [showContact, setShowContact] = useState(false);
@@ -29,14 +30,15 @@ const Hero = () => {
         {/* Header with logo and book button */}
         <div className="absolute top-8 left-0 right-0 z-20">
           <div className="container mx-auto px-4 flex justify-between items-center">
-            <div className="flex items-center gap-4">
-              <div className="w-16 h-16 bg-gradient-to-br from-cyan-400 to-cyan-600 rounded-full flex items-center justify-center">
-                <Star className="w-8 h-8 text-white" />
-              </div>
-              <div>
-                <h1 className="text-2xl font-bold text-cyan-300">Stephen Bayliss</h1>
-                <p className="text-lg text-cyan-300/80">Astrology</p>
-              </div>
+            <div className="flex items-center">
+              <img 
+                src={logo} 
+                alt="Stephen Bayliss Astrology" 
+                className="h-16 w-auto"
+              />
+            </div>
+            <div className="flex-1 text-center">
+              <h1 className="text-2xl font-bold text-cyan-300">Stephen Bayliss Astrology</h1>
             </div>
             <Button
               onClick={() => setShowContact(true)}
