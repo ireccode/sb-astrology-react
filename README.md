@@ -1,73 +1,86 @@
-# Welcome to your Lovable project
+# Stephen Bayliss Astrology Website
 
-## Project info
+This repository contains the frontend code for the Stephen Bayliss Astrology website, a platform designed to showcase astrology services, provide information, and facilitate booking enquiries.
 
-**URL**: https://lovable.dev/projects/3ad06200-21d2-43d9-a850-a868c70e2416
+## Project Overview
 
-## How can I edit this code?
+The website serves as a digital presence for Stephen Bayliss Astrology, offering detailed descriptions of services such as Natal Chart Readings, Transits & Progressions Readings, and Couples Readings. It features a modern, responsive design with a focus on user experience and clear communication.
 
-There are several ways of editing your application.
+## Key Features
 
-**Use Lovable**
+-   **Service Showcase**: Detailed presentation of astrology services with pricing and descriptions.
+-   **Interactive Contact Form**: A "Book Your Reading" modal that allows users to submit enquiries directly, including service selection, personal details, and preferred contact times.
+-   **Dynamic Testimonials**: Displays client feedback to build trust and credibility.
+-   **Frequently Asked Questions (FAQ)**: An accordion-style section to address common queries.
+-   **Responsive Design**: Optimized for seamless viewing across various devices (desktop, tablet, mobile).
+-   **Search Engine Optimization (SEO)**: Implemented meta tags, Open Graph, Twitter Cards, and Schema.org JSON-LD for improved search engine visibility and social media sharing.
+-   **Thematic Design**: Incorporates cosmic and astrological visual elements, including background images and a consistent color palette inspired by the reference site.
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/3ad06200-21d2-43d9-a850-a868c70e2416) and start prompting.
+## Tech Stack
 
-Changes made via Lovable will be committed automatically to this repo.
+The project is built using a modern web development stack:
 
-**Use your preferred IDE**
+-   **Frontend Framework**: [React](https://react.dev/) with [Vite](https://vitejs.dev/) for a fast development experience.
+-   **Language**: [TypeScript](https://www.typescriptlang.org/) for type safety and improved code quality.
+-   **Styling**: [Tailwind CSS](https://tailwindcss.com/) for utility-first CSS styling, enabling rapid UI development.
+-   **UI Components**: [shadcn/ui](https://ui.shadcn.com/) for accessible and customizable UI components.
+-   **Iconography**: [Lucide React](https://lucide.dev/) for a collection of beautiful and consistent icons.
+-   **Deployment**: Hosted on [Cloudflare Pages](https://pages.cloudflare.com/) for fast, secure, and scalable static site hosting.
+-   **Email Functionality**: Powered by a [Cloudflare Worker](https://workers.cloudflare.com/) for handling contact form submissions and sending emails via [Cloudflare Email Routing](https://developers.cloudflare.com/email-routing/).
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+## Configuration and Deployment
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+### Frontend (Cloudflare Pages)
 
-Follow these steps:
+The frontend application is deployed via Cloudflare Pages. The build configuration is standard:
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+-   **Build Command**: `npm run build`
+-   **Output Directory**: `/dist`
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+### Email Service (Cloudflare Worker & Email Routing)
 
-# Step 3: Install the necessary dependencies.
-npm i
+The contact form submissions are handled by a dedicated Cloudflare Worker. This Worker processes the incoming JSON data from the frontend, performs basic validation, and then uses Cloudflare Email Routing to send the enquiry to the designated recipient.
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+**Worker Endpoint**: `https://shy-scene-c769.ireknie00.workers.dev/contact` (This URL is specific to the deployed Worker and handles POST requests from the contact form).
+
+**Email Routing Binding**: The Worker utilizes an Email Worker binding to send emails. This binding is configured in the `wrangler.toml` (or `wrangler.jsonc`) file associated with the Worker. A typical configuration looks like this:
+
+```toml
+[[send_email]]
+name = "SEND_EMAIL"
+destination_address = "info@stephenbaylissastrology.com.au"
 ```
 
-**Edit a file directly in GitHub**
+-   `name`: Must be `SEND_EMAIL` (case-sensitive) to match the Worker's code.
+-   `destination_address`: Must be a verified email address within your Cloudflare Email Routing setup.
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+**CORS**: The Worker is configured with Cross-Origin Resource Sharing (CORS) headers to allow secure communication only from the deployed frontend (`https://sb-astrology.pages.dev`). It handles `POST` and `OPTIONS` methods and allows `Content-Type` headers.
 
-**Use GitHub Codespaces**
+## Local Development
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+To set up the project locally, follow these steps:
 
-## What technologies are used for this project?
+1.  **Clone the repository**:
+    ```bash
+    git clone https://github.com/ireccode/sb-astrology-react.git
+    cd sb-astrology-react
+    ```
+2.  **Install dependencies**:
+    ```bash
+    npm install
+    ```
+3.  **Run the development server**:
+    ```bash
+    npm run dev
+    ```
+    This will start the Vite development server, typically at `http://localhost:5173`.
 
-This project is built with:
+**Note on Email Functionality in Local Development**: The email submission form directly calls the deployed Cloudflare Worker. Therefore, the email functionality will work even during local development, provided the Worker is deployed and correctly configured on Cloudflare.
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+## Contributing
 
-## How can I deploy this project?
+Feel free to fork the repository and submit pull requests. For major changes, please open an issue first to discuss what you would like to change.
 
-Simply open [Lovable](https://lovable.dev/projects/3ad06200-21d2-43d9-a850-a868c70e2416) and click on Share -> Publish.
+## License
 
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+This project is open-source and available under the [MIT License](LICENSE).
