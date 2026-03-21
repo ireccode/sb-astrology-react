@@ -93,7 +93,7 @@ const ContactModal = ({ open, onOpenChange, selectedService }: ContactModalProps
       };
 
       // Send to Cloudflare Worker
-      const response = await fetch("https://shy-scene-c769.ireknie00.workers.dev/contact", {
+      const response = await fetch("https://sb-ew-bc5b.ireknie00.workers.dev/contact", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"

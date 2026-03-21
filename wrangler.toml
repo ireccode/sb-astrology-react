@@ -1,4 +1,4 @@
-name = "shy-scene-c769"
+name = "sb-ew-bc5b"
 main = "worker.js"
 compatibility_date = "2024-01-01"
 account_id = "9b3f64db6cb1d118401f35a81c4bfc09"
@@ -10,5 +10,5 @@ enabled = true
 invocation_logs = true
 
 [[send_email]]
-name = "SEND_EMAIL"
+name = "send_email"
 destination_address = "narkanie00@gmail.com"

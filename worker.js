@@ -52,8 +52,8 @@ export default {
 
     try {
       // Send email using Cloudflare Email Worker binding
-      await env.SEND_EMAIL.transport.send({
-        to: env.SEND_EMAIL.destination_address,
+      await env.send_email.transport.send({
+        to: env.send_email.destination_address,
         subject: subject,
         text: emailBody,
       });
