@@ -11,10 +11,11 @@ export default {
     }
 
     // Ensure the request is from the allowed origin
-    // const origin = request.headers.get("Origin");
-    // if (origin !== "https://sb-astrology.pages.dev") {
-    //   return new Response("Forbidden", { status: 403 });
-    // }
+    const origin = request.headers.get("Origin");
+    const allowedOrigins = ["https://stephenbaylissastrology.com.au", "https://www.stephenbaylissastrology.com.au"];
+    if (origin && !allowedOrigins.includes(origin)) {
+      return new Response("Forbidden", { status: 403 });
+    }
 
     let formData;
     try {
@@ -58,18 +59,36 @@ export default {
         text: emailBody,
       });
 
-      return new Response(JSON.stringify({ success: true }), { status: 200, headers: { "Content-Type": "application/json", ...corsHeaders } });
+      const requestOrigin = request.headers.get("Origin");
+      const allowedOrigins = ["https://stephenbaylissastrology.com.au", "https://www.stephenbaylissastrology.com.au"];
+      const corsOrigin = allowedOrigins.includes(requestOrigin) ? requestOrigin : "https://stephenbaylissastrology.com.au";
+
+      return new Response(JSON.stringify({ success: true }), {
+        status: 200,
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": corsOrigin,
+          "Access-Control-Allow-Methods": "POST, OPTIONS",
+          "Access-Control-Allow-Headers": "Content-Type",
+        }
+      });
     } catch (error) {
       console.error("Error sending email:", error);
-      return new Response(JSON.stringify({ error: "Failed to send email" }), { status: 500, headers: { "Content-Type": "application/json", ...corsHeaders } });
+      const requestOrigin = request.headers.get("Origin");
+      const allowedOrigins = ["https://stephenbaylissastrology.com.au", "https://www.stephenbaylissastrology.com.au"];
+      const corsOrigin = allowedOrigins.includes(requestOrigin) ? requestOrigin : "https://stephenbaylissastrology.com.au";
+
+      return new Response(JSON.stringify({ error: "Failed to send email" }), {
+        status: 500,
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": corsOrigin,
+          "Access-Control-Allow-Methods": "POST, OPTIONS",
+          "Access-Control-Allow-Headers": "Content-Type",
+        }
+      });
     }
   },
-};
-
-const corsHeaders = {
-  "Access-Control-Allow-Origin": "https://sb-astrology.pages.dev",
-  "Access-Control-Allow-Methods": "POST, OPTIONS",
-  "Access-Control-Allow-Headers": "Content-Type",
 };
 
 function handleOptions(request) {
@@ -80,9 +99,13 @@ function handleOptions(request) {
     headers.get("Access-Control-Request-Headers") !== null
   ) {
     // Handle CORS preflight requests.
+    const requestOrigin = headers.get("Origin");
+    const allowedOrigins = ["https://stephenbaylissastrology.com.au", "https://www.stephenbaylissastrology.com.au"];
+    const allowOrigin = allowedOrigins.includes(requestOrigin) ? requestOrigin : "https://stephenbaylissastrology.com.au";
+
     return new Response(null, {
       headers: {
-        "Access-Control-Allow-Origin": "https://sb-astrology.pages.dev",
+        "Access-Control-Allow-Origin": allowOrigin,
         "Access-Control-Allow-Methods": "POST, OPTIONS",
         "Access-Control-Allow-Headers": "Content-Type",
         "Access-Control-Max-Age": "86400",

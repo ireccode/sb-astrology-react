@@ -11,7 +11,7 @@ const Footer = () => {
             <img 
               src={logo} 
               alt="Stephen Bayliss Astrology" 
-              className="h-16 w-auto"
+              className="h-32 w-auto"
             />
           </div>
 

@@ -49,7 +49,7 @@ Additional Details:
 ${formData.message}
 
 ---
-This enquiry was submitted via the contact form at sb-astrology.pages.dev
+This enquiry was submitted via the contact form at stephenbaylissastrology.com.au
       `.trim();
 
       // For development, log the email

@@ -34,7 +34,7 @@ const Hero = () => {
               <img 
                 src={logo} 
                 alt="Stephen Bayliss Astrology" 
-                className="h-16 w-auto"
+                className="h-32 w-auto"
               />
             </div>
             <div className="flex-1 text-center">
