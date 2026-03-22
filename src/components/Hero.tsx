@@ -38,7 +38,7 @@ const Hero = () => {
               />
             </div>
             <div className="flex-1 text-center">
-              <h1 className="text-3xl font-bold text-[#1866a2]">Stephen Bayliss Astrology</h1>
+              <h1 className="text-5xl font-bold text-[#1866a2]">Stephen Bayliss Astrology</h1>
             </div>
             <Button
               onClick={() => setShowContact(true)}
