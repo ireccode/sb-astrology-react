@@ -29,22 +29,22 @@ const Hero = () => {
 
         {/* Header with logo and book button */}
         <div className="absolute top-0 left-0 right-0 z-20 bg-[#35d4e4]">
-          <div className="container mx-auto px-4 py-2 flex justify-between items-center">
+          <div className="container mx-auto px-4 py-3 md:py-2 flex flex-col md:flex-row justify-between items-center gap-3 md:gap-0">
             <div className="flex items-center">
               <img
                 src={logo}
                 alt="Stephen Bayliss Astrology"
-                className="h-42 w-auto mix-blend-multiply"
+                className="h-24 sm:h-32 md:h-36 lg:h-[10.5rem] w-auto transition-all"
               />
             </div>
             <div className="flex-1 text-center">
-              <h1 className="text-4xl font-bold text-[#1866a2]">Stephen Bayliss Astrology</h1>
+              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#1866a2] transition-all">Stephen Bayliss Astrology</h1>
             </div>
             <Button
               onClick={() => setShowContact(true)}
-              className="bg-[#1866a2] hover:bg-[#155a8f] text-white px-6 py-2 font-semibold"
+              className="bg-[#1866a2] hover:bg-[#155a8f] text-white px-6 py-2 font-semibold w-full md:w-auto transition-all"
             >
-              Book Your Reading
+              Book Now
             </Button>
           </div>
         </div>
