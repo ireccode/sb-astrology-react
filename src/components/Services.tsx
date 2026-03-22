@@ -75,10 +75,6 @@ const Services = () => {
                 <CardContent className="space-y-4">
                   {/* Price Section */}
                   <div className="space-y-1">
-                    <div className="flex items-center justify-start gap-2">
-                      <span className="text-sm text-gray-500 line-through">{service.originalPrice}</span>
-                      <span className="text-xs text-red-600 font-semibold">{service.discount}</span>
-                    </div>
                     <div className="text-2xl font-bold text-red-600">{service.price}</div>
                     <div className="text-xs text-gray-600">{service.duration}</div>
                   </div>
