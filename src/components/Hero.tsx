@@ -34,11 +34,11 @@ const Hero = () => {
               <img
                 src={logo}
                 alt="Stephen Bayliss Astrology"
-                className="h-48 w-auto mix-blend-multiply"
+                className="h-42 w-auto mix-blend-screen"
               />
             </div>
             <div className="flex-1 text-center">
-              <h1 className="text-5xl font-bold text-[#1866a2]">Stephen Bayliss Astrology</h1>
+              <h1 className="text-4xl font-bold text-[#1866a2]">Stephen Bayliss Astrology</h1>
             </div>
             <Button
               onClick={() => setShowContact(true)}
