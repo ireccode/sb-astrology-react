@@ -41,20 +41,20 @@ The frontend application is deployed via Cloudflare Pages. The build configurati
 
 The contact form submissions are handled by a dedicated Cloudflare Worker. This Worker processes the incoming JSON data from the frontend, performs basic validation, and then uses Cloudflare Email Routing to send the enquiry to the designated recipient.
 
-**Worker Endpoint**: `https://shy-scene-c769.ireknie00.workers.dev/contact` (This URL is specific to the deployed Worker and handles POST requests from the contact form).
+**Worker Endpoint**: `https://[worker_name].[account_id].workers.dev/contact` (This URL is specific to the deployed Worker and handles POST requests from the contact form).
 
 **Email Routing Binding**: The Worker utilizes an Email Worker binding to send emails. This binding is configured in the `wrangler.toml` (or `wrangler.jsonc`) file associated with the Worker. A typical configuration looks like this:
 
 ```toml
 [[send_email]]
-name = "SEND_EMAIL"
-destination_address = "info@stephenbaylissastrology.com.au"
+name = "send_email"
+destination_address = "[EMAIL_ADDRESS]"
 ```
 
--   `name`: Must be `SEND_EMAIL` (case-sensitive) to match the Worker's code.
+-   `name`: Must be `send_email` (case-sensitive) to match the Worker's code.
 -   `destination_address`: Must be a verified email address within your Cloudflare Email Routing setup.
 
-**CORS**: The Worker is configured with Cross-Origin Resource Sharing (CORS) headers to allow secure communication only from the deployed frontend (`https://sb-astrology.pages.dev`). It handles `POST` and `OPTIONS` methods and allows `Content-Type` headers.
+**CORS**: The Worker is configured with Cross-Origin Resource Sharing (CORS) headers to allow secure communication only from the deployed frontend (`https://stephenbaylissastrology.com.au `). It handles `POST` and `OPTIONS` methods and allows `Content-Type` headers.
 
 ## Local Development
 
