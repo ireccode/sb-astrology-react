@@ -11,4 +11,4 @@ invocation_logs = true
 
 [[send_email]]
 name = "send_email"
-destination_address = "narkanie00@gmail.com"
+destination_address = "astrologyofthetimes@gmail.com"
