@@ -16,8 +16,8 @@ const Services = () => {
       title: "Natal Chart Astrology Readings",
       description: "Natal chart readings are offered for anyone looking to understand their psychological makeup and cosmic blueprint. Discover the secrets written in the stars at the moment of your birth.",
       originalPrice: "$270",
-      price: "$180",
-      discount: "-50% OFF",
+      price: "$225",
+      discount: "0",
       duration: "90 - 120 minutes • Duration varies",
       image: natalChartImg
     },
@@ -26,8 +26,8 @@ const Services = () => {
       title: "Transits & Progressions Readings",
       description: "Follow up transit readings are great after a natal chart reading. These readings can offer insights into current planetary influences and how they affect your personal journey.",
       originalPrice: "$225",
-      price: "$150",
-      discount: "-50% OFF",
+      price: "$200",
+      discount: "0",
       duration: "60 mins and over",
       image: transitsImg
     },
@@ -36,8 +36,8 @@ const Services = () => {
       title: "Couples Reading",
       description: "A lot of people like to know what influences their partner or spouse and what ways can they work together harmoniously. Discover your cosmic compatibility.",
       originalPrice: "$375",
-      price: "$250",
-      discount: "-50% OFF",
+      price: "$280",
+      discount: "0",
       duration: "120 mins",
       image: couplesImg
     }

@@ -34,9 +34,9 @@ const ContactModal = ({ open, onOpenChange, selectedService }: ContactModalProps
   });
 
   const services = [
-    { id: "natal-chart", label: "Natal Chart Astrology Readings", price: "AU$180" },
-    { id: "transits", label: "Transits & Progressions Readings", price: "AU$150" },
-    { id: "couples", label: "Couples Reading", price: "AU$250" }
+    { id: "natal-chart", label: "Natal Chart Astrology Readings", price: "AU$225" },
+    { id: "transits", label: "Transits & Progressions Readings", price: "AU$200" },
+    { id: "couples", label: "Couples Reading", price: "AU$280" }
   ];
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
