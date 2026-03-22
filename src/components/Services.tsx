@@ -75,7 +75,7 @@ const Services = () => {
                 <CardContent className="space-y-4">
                   {/* Price Section */}
                   <div className="space-y-1">
-                    <div className="text-2xl font-bold text-red-600">{service.price}</div>
+                    <div className="text-2xl font-bold text-green-600">{service.price}</div>
                     <div className="text-xs text-gray-600">{service.duration}</div>
                   </div>
 
