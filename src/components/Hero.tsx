@@ -14,7 +14,7 @@ const Hero = () => {
 
   return (
     <>
-      <section 
+      <section
         id="hero"
         className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden"
         style={{
@@ -26,29 +26,29 @@ const Hero = () => {
       >
         {/* Dark overlay for text readability */}
         <div className="absolute inset-0 bg-black/40"></div>
-        
+
         {/* Header with logo and book button */}
-        <div className="absolute top-8 left-0 right-0 z-20">
-          <div className="container mx-auto px-4 flex justify-between items-center">
+        <div className="absolute top-0 left-0 right-0 z-20 bg-[#35d4e4]">
+          <div className="container mx-auto px-4 py-2 flex justify-between items-center">
             <div className="flex items-center">
-              <img 
-                src={logo} 
-                alt="Stephen Bayliss Astrology" 
-                className="h-32 w-auto"
+              <img
+                src={logo}
+                alt="Stephen Bayliss Astrology"
+                className="h-48 w-auto mix-blend-multiply"
               />
             </div>
             <div className="flex-1 text-center">
-              <h1 className="text-2xl font-bold text-cyan-300">Stephen Bayliss Astrology</h1>
+              <h1 className="text-3xl font-bold text-[#1866a2]">Stephen Bayliss Astrology</h1>
             </div>
             <Button
               onClick={() => setShowContact(true)}
-              className="bg-cyan-600 hover:bg-cyan-700 text-white px-6 py-2 font-semibold"
+              className="bg-[#1866a2] hover:bg-[#155a8f] text-white px-6 py-2 font-semibold"
             >
               Book Your Reading
             </Button>
           </div>
         </div>
-        
+
         <div className="relative z-10 container mx-auto px-4 py-20 text-center flex-1 flex flex-col justify-center">
           <div className="max-w-4xl mx-auto space-y-12">
             {/* Main heading */}
@@ -63,7 +63,7 @@ const Hero = () => {
               <p className="italic leading-relaxed">
                 As we move into the Aquarian age, with all of the rapid changes in the world, it is becoming increasingly difficult to navigate through all of the information that exists out there.
               </p>
-              
+
               <p className="italic leading-relaxed">
                 I have been doing astrology chart interpretation for many years, and understand the current transits and how they are affecting humanity on both a personal and collective level.
               </p>
